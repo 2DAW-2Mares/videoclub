@@ -2,6 +2,6 @@
 
 @section('content')
 
-Vista detalle película {id}
+Vista detalle película {{ $id }}
 
 @stop
