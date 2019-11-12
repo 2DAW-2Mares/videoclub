@@ -21,27 +21,27 @@ Para comprobar que las rutas se hayan creado correctamente utiliza el
 comando de artisan que devuelve un listado de rutas y además prueba también las rutas en el navegador.
  */
 Route::get('/', function () {
-    return "Pantalla Principal";
+    return view("home");
 });
 
 Route::get('/login', function () {
-    return "Login usuario";
+    return view("auth/login");
 });
 Route::get('/logout', function () {
-    return "Logout usuario";
+    return view("auth/logout");
 });
 Route::get('/catalog', function () {
-    return "Listado películas";
+    return view("catalog/index");
 });
 Route::get('/catalog/show/{id}', function ($id) {
     $texto = "Vista detalle película " . $id;
-    return $texto;
+    return view("catalog/show", array("id" => $id));
 })->where('id', '[0-9]+');
 
 Route::get('/catalog/create', function () {
-    return "Añadir película";
+    return view("catalog/create");
 });
 Route::get('/catalog/edit/{id}', function ($id) {
     $texto = "Modificar película " . $id;
-    return $texto;
+    return view("catalog/edit", array("id" => $id));
 })->where('id', '[0-9]+');
