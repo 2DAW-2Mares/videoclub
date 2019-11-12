@@ -14,3 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    return "login";
+});
+
+Route::get('/logout', function () {
+    return "logout";
+});
+
+Route::get('/catalog', function () {
+    return "catalog";
+});
+
+Route::get('/catalog/show{id}', function ($id) {
+    return "catalog";
+});
+
+Route::get('catalog/create}', function () {
+    return "catalog";
+});
+
+Route::get('/catalog/edit{id}', function ($id) {
+    return "catalog";
+});
