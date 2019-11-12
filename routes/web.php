@@ -12,42 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/login', function () {
-    $conectado="";
-    $conectado = "conectado";
-    return $conectado;
+    return view('auth.login');
 });
 Route::get('/logout', function () {
-    $conectado="";
-    $conectado = "desconectado";
-    return $conectado;
+    return view('auth.logout');
 });
 
 Route::get('/catalog', function () {
-    $conectado="";
-    $conectado = "Listado peliculas";
-    return $conectado;
+    return view('catalog.index');
 });
-Route::get('/catalog', function () {
-    $conectado="";
-    $conectado = "Listado peliculas";
-    return $conectado;
-});
+
 Route::get('/catalog/show/{id}', function ($id) {
-    $conectado="";
-    $conectado = "Listado peliculas".$id;
-    return $conectado;
+    return view('catalog.show', array('id'=>$id));
 });
 Route::get('/create', function () {
-    $conectado="";
-    $conectado = "Añadir pelicula";
-    return $conectado;
+    return view('catalog.create');
 });
 
 Route::get('catalog/edit/{id}', function ($id) {
-    $conectado="";
-    $conectado = "Modificar pelicula".$id;
-    return $conectado;
+    return view('catalog.edit', array('id'=>$id));
 });
