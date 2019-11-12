@@ -28,13 +28,13 @@ Route::get('/catalog', function () {
 });
 
 Route::get('/catalog/show{id}', function ($id) {
-    return "catalog";
+    return "catalog show id";
 });
 
 Route::get('catalog/create}', function () {
-    return "catalog";
+    return "catalog create";
 });
 
 Route::get('/catalog/edit{id}', function ($id) {
-    return "catalog";
+    return "catalog edit id";
 });
