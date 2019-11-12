@@ -12,31 +12,31 @@
 */
 
 Route::get('/', function () {
-    return view('pantallaprincipal');
+    return view('home');
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Route::get('/logout', function () {
-    return view('logout');
+    return view('auth.logout');
 });
 
 Route::get('/catalog', function () {
-    return view('catalog');
+    return view('catalog.index');
 });
 
 Route::get('/catalog/show/{id}', function ($id) {
-    return view('catalogId',array('id' => $id));
+    return view('catalog.show',array('id' => $id));
 })
 ->where('id', '[0-9]+');
 
 Route::get('/catalog/create', function() {
-    return view('catalogCreate');
+    return view('catalog.create');
 });
 
 Route::get('/catalog/edit/{id}', function($id) {
-    return view('catalogEdit',array('id' => $id));
+    return view('catalog.edit',array('id' => $id));
 })
 ->where('id', '[0-9]+');
