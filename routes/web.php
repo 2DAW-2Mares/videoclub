@@ -12,32 +12,33 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/login', function () {
-    return ('hola');
+    return view('auth.login');
 });
 
 Route::get('/logout', function () {
-    return ('adios');
+    return view('auth.logout');
 });
 
 Route::get('/catalog', function () {
-    return ('Catalogo de peliculas');
+    return view('catalog.index');
+});
+
+Route::get('/catalog/create', function () {
+    return view('catalog.create');
 });
 
 Route::get('/catalog/show/{id}', function ($id) {
-    return ('Pelicula de id ' . $id);
+    return view('catalog.show', array('id'=>$id));
 })
 ->where('id', '[0-9]+');
 
-Route::get('/catalog', function () {
-    return ('Crear catálogo');
-});
 
 Route::get('/catalog/edit/{id}', function ($id) {
-    return ('Vas a editar la peli del id ' . $id);
+    return view('catalog.edit', array('id'=>$id));
 })
 ->where('id', '[0-9]+');
 
