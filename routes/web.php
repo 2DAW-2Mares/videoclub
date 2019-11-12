@@ -12,5 +12,40 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Pantalla Principal';
 });
+
+Route::get('/login', function () {
+    return 'Login Usuario';
+
+});
+
+Route::get('/logout', function()
+{
+    return 'Logout Usuario';
+}); 
+
+Route::get('catalog', function()
+{
+    return 'Listado de Peliculas';
+}); 
+
+Route::get('catalog/show/{id}', function()
+{
+    return 'Vista detalle de Pelicula';
+}); 
+
+Route::get('catalog/show/{id}', function()
+{
+    return 'Vista detalle de Pelicula';
+}); 
+
+Route::get('catalog/create', function()
+{
+    return 'Añadir película';
+}); 
+
+Route::get('catalog/edit/{id}', function()
+{
+    return 'Modificar película';
+}); 
