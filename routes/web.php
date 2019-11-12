@@ -16,29 +16,29 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Route::get('/logout', function () {
-    return view('logout');
+    return view('auth.logout');
 });
 
 Route::get('/catalog', function () {
-    return view('index');
+    return view('catalog.index');
 });
 
 Route::get('/catalog/show/{id}', function ($id) {
-    return view('show', array('id'=>$id));
+    return view('catalog.show', array('id'=>$id));
     //return "Vista detalle película " . $id;
 })
 ->where('numero', '[0-9]+');
 
 Route::get('/catalog/create', function () {
-    return view('create');
+    return view('catalog.create');
 });
 
 Route::get('/catalog/edit/{id}', function ($id) {
-    return view('edit', array('id'=>$id));
+    return view('catalog.edit', array('id'=>$id));
     //return "Modificar película " . $id;
 })
 ->where('numero', '[0-9]+');
