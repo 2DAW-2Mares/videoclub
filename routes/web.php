@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Pantalla Principal';
 });
 
 Route::get('/login', function () {
