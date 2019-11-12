@@ -14,3 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    return 'Login Usuario';
+});
+
+Route::get('/logout', function () {
+    return 'Logout Usuario';
+});
+
+Route::get('/catalog', function () {
+    return 'Listado películas';
+});
+
+Route::get('/catalog/show/{id}', function ($id) {
+    return 'Vista detalle película '.$id;
+});
+
+Route::get('/catalog/create', function () {
+    return 'Añadir película';
+});
+
+Route::get('/catalog/edit/{id}', function ($id) {
+    return 'Modificar película '.$id;
+});
