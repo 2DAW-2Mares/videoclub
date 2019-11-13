@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+<<<<<<< HEAD
 
 Route::get('/login', function () {
     return "login";
@@ -38,3 +39,23 @@ Route::get('catalog/create}', function () {
 Route::get('/catalog/edit{id}', function ($id) {
     return "catalog";
 });
+=======
+Route::get('login', function () {
+    return view('auth.login');
+});
+Route::get('logout', function () {
+    return view('auth.logout');
+});
+Route::get('catalog', function () {
+    return view('catalog.index');
+});
+Route::get('catalog/show/{id}', function ($id) {
+    return view('catalog.show', array('id'=>$id));
+})->where('id', '[0-9]+');
+Route::get('catalog/create', function () {
+    return view('catalog.create');
+});
+Route::get('catalog/edit/{id}', function ($id) {
+    return view('catalog.edit', array('id'=>$id));
+})->where('id', '[0-9]+');
+>>>>>>> 5e564e98d49d2e2a191245b303abc2c2ac104234
