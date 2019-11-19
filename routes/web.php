@@ -11,24 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+/*Route::get('/tabla/{numero}', 'NumerosController@showTablaMultiplicar')
+    ->where('numero' , '[0-9]+');
+Route::get('/redirige/{numero}', function($id) {
+    return redirect()->action('NumerosController@showTablaMultiplicar',[$id]);
 });
+*/
+
+Route::get('/', 'HomeController@getHome');
+
 Route::get('login', function () {
     return view('auth.login');
 });
 Route::get('logout', function () {
     return view('auth.logout');
 });
-Route::get('catalog', function () {
-    return view('catalog.index');
-});
-Route::get('catalog/show/{id}', function ($id) {
-    return view('catalog.show', array('id'=>$id));
-})->where('id', '[0-9]+');
-Route::get('catalog/create', function () {
-    return view('catalog.create');
-});
-Route::get('catalog/edit/{id}', function ($id) {
-    return view('catalog.edit', array('id'=>$id));
-})->where('id', '[0-9]+');
+
+Route::get('catalog', 'CatalogController@getIndex');
+Route::get('catalog/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
+Route::get('catalog/create', 'CatalogController@getCreate');
+Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
