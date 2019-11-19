@@ -11,24 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+/* 
+
+Route::get('tabla','NumerosController@showFormTabla');
+
+*/
+
+Route::get('/', 'HomeController@getHome');
+
+//----------------------------
 Route::get('login', function () {
     return view('auth.login');
 });
 Route::get('logout', function () {
     return view('auth.logout');
 });
-Route::get('catalog', function () {
-    return view('catalog.index');
-});
-Route::get('catalog/show/{id}', function ($id) {
-    return view('catalog.show', array('id'=>$id));
-})->where('id', '[0-9]+');
-Route::get('catalog/create', function () {
-    return view('catalog.create');
-});
-Route::get('catalog/edit/{id}', function ($id) {
-    return view('catalog.edit', array('id'=>$id));
-})->where('id', '[0-9]+');
+
+//-----------------------------
+
+Route::get('catalog', 'CatalogController@getIndex');
+
+//Route::get('tabla/{numero}','NumerosController@showTablaMultiplicar')
+
+Route::get('catalog/show/{id}', 'CatalogController@getShow');
+
+Route::get('catalog/create', 'CatalogController@getCreate');
+
+Route::get('catalog/create/{id}', 'CatalogController@getEdit');
