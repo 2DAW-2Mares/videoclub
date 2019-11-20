@@ -19,16 +19,18 @@
           Director:  {{$pelicula['director']}}  <br>
           <br>
           Estado:   <?php if($pelicula['rented']==false)
-          { echo "Película disponible";}
-          else{echo "Alquilar película";} ?>  <br>
+          { echo "Película disponible"; }
+          else{echo "Alquilar película";}  ?>  <br>
           <br>
-         Resumen:  {{$pelicula['synopsis']}}  <br>
-         <?php if($disponible=="Película disponible"){
-             ?> <button style="background-color:green">Alquilar película</button> <?php  }
-         else{  ?> <button style="background-color:green">Alquilar película</button> <?php } ?>
-
-              } 
-         }
+         Resumen:  {{$pelicula['synopsis']}}  <br> 
+         <?php if($pelicula['rented']==false){
+                 echo "<button style=background-color:green >Alquilar película</button>";
+                }else{
+                echo "<button style=background-color:red>Devolver película</button>";        
+         }?>
+         <a href="http://videoclub.test/catalog" class="btn btn-default btn-lg active" role="button">Volver al listado</a>
+       
+   
         </h4>
 
 
