@@ -11,7 +11,8 @@
          <div class="card-body" style="padding:30px">
 
             {{-- TODO: Abrir el formulario e indicar el método POST --}}
-<form method="PUT">
+<form method="POST">
+{{method_field('PUT')}}
             {{-- TODO: Protección contra CSRF --}}
             @csfr
             <div class="form-group">
