@@ -30,7 +30,8 @@ Route::get('/catalog', 'CatalogController@getIndex');
 Route::get('catalog/show/{id}', function ($id) {
     return view('catalog.show', array('id'=>$id));
 })->where('id', '[0-9]+');*/
-Route::get('/catalog/show/{id}', 'CatalogController@getshow');
+Route::get('/catalog/show/{id}', 'CatalogController@getshow')
+->where('id', '[0-9]+');
 /*
 Route::get('catalog/create', function () {
     return view('catalog.create');
