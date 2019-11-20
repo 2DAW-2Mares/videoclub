@@ -25,11 +25,11 @@
         </p>
         <p><strong>Estado: </strong>
             @if($pelicula['rented'])
-            Pelicula actualmente alquilada
-            <button class="btn btn-danger">Devolver Pelicula</button>
+            alquilada
+            <button class="btn btn-danger">Devolver</button>
             @else
-            Pelicula disponible
-            <button class="btn btn-primary">Película disponible</button>
+            disponible
+            <button class="btn btn-primary">Alquilar</button>
             @endif
         </p>
         <a class="btn btn-warning" href="{{ url('/catalog/edit/'.$id) }}">

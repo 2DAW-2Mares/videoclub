@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    private $arrayPeliculas = array(
+    public $arrayPeliculas = array(
         array(
             'title' => 'El padrino',
             'year' => '1972',
