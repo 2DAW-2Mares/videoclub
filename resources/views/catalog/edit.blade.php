@@ -8,7 +8,9 @@
           <div class="card-header text-center">
              Modificar película
           </div>
-          <form>
+          <form method="POST">
+               {{method_field('PUT')}}
+                @csrf
           <div class="card-body" style="padding:30px">
 
              {{-- TODO: Abrir el formulario e indicar el método POST --}}

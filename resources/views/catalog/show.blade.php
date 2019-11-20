@@ -36,7 +36,7 @@
         @endif
 
         <button style="background-color:orange; margin-left:2%;">Editar película</button>
-        <button style="background-color:gray; margin-left:2%;">< Volver al listado</button>
+        <a href="http://www.videoclub.test/catalog" class="btn btn-default btn-lg active" role="button" style="background-color:gray; margin-left:2%;">< Volver al listado</a>
 
     </div>
 </div>
