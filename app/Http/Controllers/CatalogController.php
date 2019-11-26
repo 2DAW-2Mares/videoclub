@@ -8,18 +8,13 @@ class CatalogController extends Controller {
     public function getIndex() {
         $movies = Movie::all();
         return view('catalog.index',
-            array(
-                'movies' => $movies,
-            )
+            array('movies' => $movies,)
         );
     }
 
     public function getShow($id) {
         $movies = Movie::find($id);
-        return view('catalog.show', array(
-            'pelicula' => $movies,
-            'id'       => $id,
-        ));
+        return view('catalog.show', array('pelicula' => $movies));
     }
 
     public function getCreate() {
