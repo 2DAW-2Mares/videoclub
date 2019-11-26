@@ -22,15 +22,15 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o">
+                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="director" placeholder="Director">
+                            <input type="text" name="director" placeholder="Director" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster">
+                            <input type="url" name="poster" placeholder="url del poster" class="form-control">
                         </div>
 
                         <div class="form-group">
