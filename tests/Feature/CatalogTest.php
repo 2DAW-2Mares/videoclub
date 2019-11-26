@@ -1,7 +1,5 @@
 <?php
-
 namespace Tests\Feature;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -68,7 +66,6 @@ class CatalogTest extends TestCase
                 )
             ),
         );
-
         foreach ($requestsCatalog as $request) {
             $response = $this->get(self::CATALOG_PATH . $request['path']);
             $response->assertSuccessful();
