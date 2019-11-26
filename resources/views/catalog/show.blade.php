@@ -2,32 +2,40 @@
 
 @section('content')
 
-<div class="row">
+    <div class="row">
 
-<div class="col-sm-4">
+        <div class="col-sm-4">
 
-    <img src="{{$pelicula['poster']}}" alt="poster"></img>
+            <a href="{{ url('/catalog/show/' . $id ) }}">
+                <img src="{{$pelicula['poster']}}" style="height:200px"/>
+            </a>
 
-</div>
-<div class="col-sm-8">
+        </div>
+        <div class="col-sm-8">
 
-    <h1>{{$pelicula['title']}}</h1>
-    <h2>Año: {{$pelicula['year']}}</h2>
-    <h2>Director: {{$pelicula['director']}}</h2>
-    <p><strong>Resumen: </strong>{{$pelicula['synopsis']}}</p>
+            <h4>{{$pelicula['title']}}</h4>
+            <h6>A&ntilde;o: {{$pelicula['year']}}</h6>
+            <h6>Director: {{$pelicula['director']}}</h6>
+            <p><strong>Resumen:</strong> {{$pelicula['synopsis']}}</p>
+            <p><strong>Estado: </strong>
+                @if($pelicula['rented'])
+                    Pel&iacute;cula actualmente alquilada.
+                @else
+                    Pel&iacute;cula disponible.
+                @endif
+            </p>
 
-    @if ($pelicula['rented'] == false)
-    <p><strong>Estado: </strong>Pelicula disponible</p>
+            @if($pelicula['rented'])
+                <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a>
+            @else
+                <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
+            @endif
+            <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                Editar pel&iacute;cula</a>
+            <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
 
-        <a class="btn btn-default" href="#" style="background-color: blue; color: white;">Alquilar pelicula</a>
-    @elseif ($pelicula['rented'] == true)
-    <p><strong>Estado: </strong>Pelicula actualmente alquilada</p>
-        <a class="btn btn-default" href="#" style="background-color: red; color: white;">Devolver pelicula</a>
-    @endif
-    <a class="btn btn-default" href="#" style="background-color: orange; color: white;">Editar película</a>
-    <a class="btn btn-default" href="http://www.videoclub.test/catalog" style="color: black; border: solid black 1px;">Volver al listado</a>
-
-</div>
-</div>
+        </div>
+    </div>
 
 @stop
