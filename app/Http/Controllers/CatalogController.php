@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movie;
 
 class CatalogController extends Controller
 {
     public function getIndex()
     {
-        return view('catalog.index',
-            array(
-                'arrayPeliculas' => $this->arrayPeliculas
-            )
-        );
+        $arrayMovie = Movie::all();
+        return view('catalog.index', array('arrayPeliculas' => $arrayMovie));
     }
 
     public function getShow($id)
     {
-        return view('catalog.show', array(
-            'pelicula' => $this->arrayPeliculas[$id],
-            'id' => $id,
-        ));
+        $pelicula = Movie::findOrFail($id);
+        return view('catalog.show', array('pelicula' => $pelicula));
     }
 
     public function getCreate()
@@ -30,7 +26,8 @@ class CatalogController extends Controller
 
     public function getEdit($id)
     {
-        return view('catalog.edit', array('id'=>$id));
+        $pelicula = Movie::findOrFail($id);
+        return view('catalog.edit', array('pelicula' => $pelicula));
     }
 
 
