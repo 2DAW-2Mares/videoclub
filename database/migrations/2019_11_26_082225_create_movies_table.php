@@ -20,6 +20,7 @@ class CreateMoviesTable extends Migration
             $table->string('director',64);
             $table->string('poster');
             $table->boolean('rented')->default(false);
+            $table->text('synopsis');
             $table->timestamps();
         });
     }
