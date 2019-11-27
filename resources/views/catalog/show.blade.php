@@ -11,6 +11,7 @@
             </a>
 
         </div>
+
         <div class="col-sm-8">
 
             <h4>{{$pelicula['title']}}</h4>
