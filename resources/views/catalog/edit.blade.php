@@ -10,10 +10,8 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ url('foo/bar') }}" method="POST">
-
+                    <form action="{{ url('catalog/edit') }}" method="POST">
                         {{method_field('PUT')}}
-
                         @csrf
 
                         <div class="form-group">
@@ -35,7 +33,7 @@
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
-                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3"> value="{{ $pelicula->synopsis }}"</textarea>
+                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3">{{ $pelicula->synopsis }}</textarea>
                         </div>
 
                         <div class="form-group text-center">
@@ -43,6 +41,8 @@
                                 Modificar película
                             </button>
                         </div>
+
+                        <input type="hidden" name="identificacion" value="{{ $pelicula->id }}">
 
                     </form>
 

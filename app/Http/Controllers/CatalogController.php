@@ -33,7 +33,32 @@ class CatalogController extends Controller
     {
         $pelicula = Movie::findOrFail($id);
         return view('catalog.edit', array(
-            'pelicula' => $pelicula
+            'pelicula' => $pelicula,
         ));
+    }
+
+    public function postCreate(Request $request) {
+        $m = new Movie;
+            $m->title = $request->title;
+            $m->year = $request->year;
+            $m->director = $request->director;
+            $m->poster = $request->poster;
+            $m->synopsis = $request->synopsis;
+        $m->save();
+        return redirect(action('CatalogController@getIndex'));
+    }
+
+    public function putEdit(Request $request) {
+        
+        $id = $request->identificacion;
+
+        $m = Movie::findOrFail($id);
+            $m->title = $request->title;
+            $m->year = $request->year;
+            $m->director = $request->director;
+            $m->poster = $request->poster;
+            $m->synopsis = $request->synopsis;
+        $m->save();
+        return redirect()->action('CatalogController@getShow',[$id]);
     }
 }
