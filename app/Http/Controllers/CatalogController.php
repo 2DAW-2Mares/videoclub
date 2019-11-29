@@ -29,6 +29,19 @@ class CatalogController extends Controller
         return view('catalog.create');
     }
 
+    public function postCreate(Request $request) {
+
+        $pelicula = new Movie;
+        $pelicula->title = $request->title;
+        $pelicula->year = $request->year;
+        $pelicula->director = $request->director;
+        $pelicula->poster = $request->poster;
+        $pelicula->synopsis = $request->synopsis;
+        $pelicula->save();
+        return view('catalog.create');
+
+    }
+
     public function getEdit($id)
     {
         $pelicula = Movie::findOrFail($id);
@@ -36,4 +49,14 @@ class CatalogController extends Controller
             'pelicula' => $pelicula
         ));
     }
+
+    public function puttEdit(Request $request) {
+
+        $pelicula = Movie::findOrFail($id);
+        return view('catalog.edit', array(
+            'pelicula' => $pelicula
+        ));
+
+    }
+
 }
