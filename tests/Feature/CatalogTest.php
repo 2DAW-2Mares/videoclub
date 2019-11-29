@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Http\Controllers\CatalogController;
+use App\Movie;
 
 class CatalogTest extends TestCase
 {
@@ -20,28 +20,25 @@ class CatalogTest extends TestCase
 
     public function testCatalogShow()
     {
-        $catalogController = new CatalogController();
-        $id = 0;
-        foreach ($catalogController->arrayPeliculas as $pelicula) {
-            $response = $this->get(self::CATALOG_PATH . '/show/' . $id);
+        foreach (Movie::all() as $pelicula) {
+            $response = $this->get(self::CATALOG_PATH . '/show/' . $pelicula->id);
             $response->assertViewIs('catalog.show');
             $response->assertStatus(200);
-            $texto1 = $pelicula['rented'] ? 'alquilada' : 'disponible';
-            $texto2 = $pelicula['rented'] ? 'Devolver' : 'Alquilar';
+            $texto1 = $pelicula->rented ? 'alquilada' : 'disponible';
+            $texto2 = $pelicula->rented ? 'Devolver' : 'Alquilar';
             $response->assertSeeText($texto1);
             $response->assertSeeText($texto2);
-            $id++;
         }
     }
 
     public function testCatalogViews()
     {
-        $catalogController = new CatalogController();
-        $idRand = rand(1,count($catalogController->arrayPeliculas) - 1);
+        $arrayPeliculas = Movie::all();
+        $idRand = rand(1,count($arrayPeliculas) - 1);
         $textosPeliculas = array();
 
-        foreach ($catalogController->arrayPeliculas as $pelicula) {
-            array_push($textosPeliculas, $pelicula['title']);
+        foreach ($arrayPeliculas as $pelicula) {
+            array_push($textosPeliculas, $pelicula->title);
         }
 
         $requestsCatalog = array(
