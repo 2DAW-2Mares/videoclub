@@ -49,7 +49,7 @@ class CatalogController extends Controller
     }
 
     public function putEdit(Request $request) {
-        
+
         $id = $request->identificacion;
 
         $m = Movie::findOrFail($id);
