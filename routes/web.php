@@ -24,6 +24,7 @@ Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::get('edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
     Route::put('edit', 'CatalogController@putEdit');
 
+    Route::put('/changeRented', 'CatalogController@changeRented');
 });
 
 Auth::routes();
