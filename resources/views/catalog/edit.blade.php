@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
-                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3"> value="{{ $pelicula->synopsis }}"</textarea>
+                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3">{{ $pelicula->synopsis }}</textarea>
                         </div>
 
                         <div class="form-group text-center">
