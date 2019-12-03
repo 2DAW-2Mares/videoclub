@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Movie;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,27 @@ class DatabaseSeeder extends Seeder
     {
         self::seedCatalog();
         $this->command->info('Tabla catálogo inicializada con datos!');
+        self::seedUsers();
+        $this->command->info('Tabla usuarios inicializada con datos!');
     }
+
+    private static function seedUsers(){
+        User::truncate();
+
+        $usuario1 = new User;
+        $usuario1->name = "usuario1";
+        $usuario1->email = "usuario1@email.com";
+        $usuario1->password = bcrypt("usuario1");
+        $usuario1->save();
+
+        $usuario2 = new User;
+        $usuario2->name = "usuario2";
+        $usuario2->email = "usuario2@email.com";
+        $usuario2->password = bcrypt("usuario2");
+        $usuario2->save();
+
+    }
+
 
     private static function seedCatalog()
     {
