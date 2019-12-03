@@ -10,32 +10,34 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ url('') }}" method="PUT">
+                    <form action="{{ action('CatalogController@putEdit') }}" method="POST">
 
                         {{method_field('PUT')}}
 
                         @csrf
+                        <input type="hidden" name="id" value="{{ $pelicula->id }}">
 
+                        <!--type hidden con la id de la pelicula que -->
                         <div class="form-group">
                             <label for="title">Título</label>
-                            <input value="$pelicula->title" type="text" name="title" id="title" class="form-control" value="{{ $pelicula->title }}">
+                            <input type="text" name="title" id="title" class="form-control" value="{{ $pelicula->title }}">
                         </div>
 
                         <div class="form-group">
-                            <input value="$pelicula->year" type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o" value="{{ $pelicula->year }}">
+                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o" value="{{ $pelicula->year }}">
                         </div>
 
                         <div class="form-group">
-                            <input value="$pelicula->director" type="text" name="director" placeholder="Director" value="{{ $pelicula->director }}">
+                            <input type="text" name="director" placeholder="Director" value="{{ $pelicula->director }}">
                         </div>
 
                         <div class="form-group">
-                            <input value="$pelicula->poster" type="url" name="poster" placeholder="url del poster" value="{{ $pelicula->poster }}">
+                            <input type="url" name="poster" placeholder="url del poster" value="{{ $pelicula->poster }}">
                         </div>
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
-                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3"> value="{{ $pelicula->synopsis }}"</textarea>
+                            <textarea name="synopsis" id="synopsis" class="form-control" rows="3" value="{{ $pelicula->synopsis }}">{{ $pelicula->synopsis }}</textarea>
                         </div>
 
                         <div class="form-group text-center">

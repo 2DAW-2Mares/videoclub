@@ -27,8 +27,12 @@ Route::group(['prefix' => 'catalog'], function (){
     Route::get('create', 'CatalogController@getCreate');
     Route::post('create', 'CatalogController@postCreate');
     Route::get('edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
-    Route::put('edit/{id}', 'CatalogController@puttEdit')->where('id', '[0-9]+');
+    Route::put('edit', 'CatalogController@putEdit');
 
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
