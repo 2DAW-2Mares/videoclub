@@ -62,4 +62,16 @@ class CatalogController extends Controller
 
         return redirect(action('CatalogController@getShow', ['id' => $pelicula->id]));
     }
+
+    public function changeRented(Request $request){
+        $pelicula = Movie::findOrFail($request->id);
+        if ($pelicula->rented){
+            $pelicula->rented = false;
+        }else{
+            $pelicula->rented = true;
+        }
+        $pelicula->save();
+
+        return redirect(action('CatalogController@getShow', ['id' => $pelicula->id]));
+    }
 }
