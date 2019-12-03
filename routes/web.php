@@ -11,18 +11,26 @@
 |
 */
 
-Route::get('/', 'HomeController@getHome');
+Route::get('/', 'HomeController@index');
 
-Route::get('login', function () {
+/* Route::get('login', function () {
     return view('auth.login');
 });
 Route::get('logout', function () {
     return view('auth.logout');
+}); */
+
+Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
+    Route::get('/', 'CatalogController@getIndex');
+    Route::get('/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
+
+    Route::get('/create', 'CatalogController@getCreate');
+    Route::post('/create', 'CatalogController@postCreate');
+
+    Route::get('/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
+    Route::put('/edit', 'CatalogController@putEdit');
 });
-Route::get('catalog', 'CatalogController@getIndex');
 
-Route::get('catalog/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
+Auth::routes();
 
-Route::get('catalog/create', 'CatalogController@getCreate');
-
-Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
+Route::get('/home', 'HomeController@index')->name('home');
