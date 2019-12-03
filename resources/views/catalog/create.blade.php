@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ url('foo/bar') }}" method="POST">
+                    <form action="{{ action('CatalogController@postCreate') }}" method="POST">
 
                         @csrf
 
