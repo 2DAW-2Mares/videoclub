@@ -19,10 +19,15 @@ Route::get('login', function () {
 Route::get('logout', function () {
     return view('auth.logout');
 });
+
+
 Route::get('catalog', 'CatalogController@getIndex');
-
 Route::get('catalog/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
-
-Route::get('catalog/create', 'CatalogController@getCreate');
-
+Route::get("catalog/create", "CatalogController@getCreate");
 Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
+
+
+Route::post("catalog/postCreate","CatalogController@postCreate")->where('id', '[0-9]+');
+Route::put("catalog/postEdit",'CatalogController@putEdit')->where('id', '[0-9]+');
+
+
