@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('CatalogController@putEdit') }}" method="POST">
+                    <form action="{{ action('CatalogController@putEdit') }}" method="POST" enctype="multipart/form-data">
 
                         {{method_field('PUT')}}
 
@@ -23,15 +23,18 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o" value="{{ $pelicula->year }}">
+                            <label for="year">A&ntilde;o</label>
+                            <input type="number" min="1900" max="2030" name="year" class="form-control" placeholder="A&ntilde;o" value="{{ $pelicula->year }}">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="director" placeholder="Director" value="{{ $pelicula->director }}">
+                            <label for="director">Director</label>
+                            <input type="text" name="director"  class="form-control" placeholder="Director" value="{{ $pelicula->director }}">
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster" value="{{ $pelicula->poster }}">
+                            <label for="avatar">Imagen de carátula</label>
+                            <input type="file" id="poster" name="poster" class="form-control">
                         </div>
 
                         <div class="form-group">
