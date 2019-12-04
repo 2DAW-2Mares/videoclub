@@ -26,7 +26,9 @@
             </p>
 
             @if($pelicula->rented)
+
                 <form action="{{ action('CatalogController@peliculaAlquilada') }}" method="POST">
+
                     {{method_field('PUT')}}
                     @csrf
                     <input type="hidden" name="id" value="{{ $pelicula->id }}">
@@ -36,11 +38,22 @@
                         </button>
                 </form>
             @else
-                <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
+                {{-- <a class="btn btn-primary" href="#">Alquilar pelicula</a> --}}
+                <form action="{{ action('CatalogController@peliculaAlquilada') }}" method="POST">
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-primary">
+                            Alquilar pelicula
+                        </button>
+                </form>
+            @else
+                <a class="btn btn-primary" href="#">Alquilar pelicula</a>
             @endif
             <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                Editar pel&iacute;cula</a>
+                Editar pelicula</a>
             <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
 
         </div>
