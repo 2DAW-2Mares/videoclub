@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@getHome');
+Route::put('/catalog/changeRented', 'CatalogController@changeRented')->where('id', '[0-9]+');
 
 Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::get('/', 'CatalogController@getIndex');
