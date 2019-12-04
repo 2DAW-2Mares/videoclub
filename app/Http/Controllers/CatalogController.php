@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class CatalogController extends Controller
 {
+
     public function getIndex()
     {
         return view('catalog.index',
@@ -35,5 +37,32 @@ class CatalogController extends Controller
         return view('catalog.edit', array(
             'pelicula' => $pelicula
         ));
+    }
+
+
+
+    public function postCreate(Request $request){
+        $movie = new Movie;
+        $movie->title = $request->input('title');
+        $movie->year = $request->input('year');
+        $movie->director = $request->input('director');
+        $movie->poster = $request->input('poster');
+        $movie->rented = 0;
+        $movie->synopsis = $request->input('synopsis');
+        $movie->save();
+        return redirect(action("CatalogController@getIndex", 'catalog'));
+    }
+
+    public function putEdit(Request $request) {
+        $id = $request->input('id');
+        $movie = Movie::findOrFail($id);
+        $movie->title = $request->input('title');
+        $movie->year = $request->input('year');
+        $movie->director = $request->input('director');
+        $movie->poster = $request->input('poster');
+        $movie->rented = 0;
+        $movie->synopsis = $request->input('synopsis');
+        $movie->save();
+        return redirect(action("CatalogController@getShow", $id));
     }
 }
