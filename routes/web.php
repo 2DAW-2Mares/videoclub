@@ -21,8 +21,5 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
     Route::post("catalog/postCreate", "CatalogController@postCreate")->where('id', '[0-9]+');
     Route::put("catalog/postEdit", 'CatalogController@putEdit')->where('id', '[0-9]+');
+    Route::put("catalog/changeRented", "CatalogController@changeRented")->where('id', '[0-9]+');
 });
-
-
-
-

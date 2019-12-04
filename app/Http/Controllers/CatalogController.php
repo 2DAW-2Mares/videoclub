@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Movie;
+use Illuminate\Http\Request;
 
 class CatalogController extends Controller {
     public function getIndex() {
@@ -32,27 +31,40 @@ class CatalogController extends Controller {
         ));
     }
 
-    public function putEdit(Request $request){
-        $pelicula = Movie::findOrFail($request->idHidden);
-        $pelicula->title = $request->title;
-        $pelicula->year = $request->year;
+    public function putEdit(Request $request) {
+        $pelicula           = Movie::findOrFail($request->idHidden);
+        $pelicula->title    = $request->title;
+        $pelicula->year     = $request->year;
         $pelicula->director = $request->director;
-        $pelicula->poster = $request->poster;
+        $pelicula->poster   = $request->poster;
         $pelicula->synopsis = $request->synopsis;
         $pelicula->save();
         return redirect(action('CatalogController@getIndex'));
     }
 
     public function postCreate(Request $request) {
-        $pelicula = new Movie;
-        $pelicula->title = $request->title;
-        $pelicula->year = $request->year;
+        $pelicula           = new Movie;
+        $pelicula->title    = $request->title;
+        $pelicula->year     = $request->year;
         $pelicula->director = $request->director;
-        $pelicula->poster = $request->poster;
+        $pelicula->poster   = $request->poster;
         $pelicula->synopsis = $request->synopsis;
         $pelicula->save();
         return redirect(action('CatalogController@getIndex'));
     }
 
-}
+    public function changeRented(Request $request) {
+        $pelicula = Movie::findOrFail($request->idHidden);
+        if ($pelicula->rented) {
+            $pelicula->rented = false;
+        } else {
+            $pelicula->rented = true;
+        }
+        $pelicula->save();
+        return view('catalog.show', array(
+            'pelicula' => $pelicula,
+        ));
 
+    }
+
+}
