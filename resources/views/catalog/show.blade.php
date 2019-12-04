@@ -26,7 +26,15 @@
             </p>
 
             @if($pelicula->rented)
-                <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a>
+                <form action="{{ action('CatalogController@peliculaAlquilada') }}" method="POST">
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-danger" >
+                            Devolver pelicula
+                        </button>
+                </form>
             @else
                 <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
             @endif

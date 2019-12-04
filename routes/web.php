@@ -19,16 +19,18 @@ Route::get('/', 'HomeController@getHome');
 Route::get('logout', function () {
     return view('auth.logout');
 }); */
-Route::get('catalog', 'CatalogController@getIndex');
+Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
+        Route::get('/', 'CatalogController@getIndex');
 
-Route::get('catalog/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
+        Route::get('show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
 
-Route::get('catalog/create', 'CatalogController@getCreate')->middleware('auth');
-Route::post('catalog/create', 'CatalogController@postCreate')->middleware('auth');
+        Route::get('create', 'CatalogController@getCreate')->middleware('auth');
+        Route::post('create', 'CatalogController@postCreate')->middleware('auth');
 
-Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+')->middleware('auth');
-Route::put('catalog/edit', 'CatalogController@putEdit')->middleware('auth');
-
+        Route::get('edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+')->middleware('auth');
+        Route::put('edit', 'CatalogController@putEdit')->middleware('auth');
+        Route::put('changeRented','CatalogController@peliculaAlquilada');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
