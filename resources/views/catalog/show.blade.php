@@ -26,9 +26,36 @@
             </p>
 
             @if($pelicula->rented)
-                <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a>
+                {{-- <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a> --}}
+                <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+                        {{-- {{ action('CatalogController@putEdit') }} --}}
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-danger" >
+                            Devolver pel&iacute;cula 
+                            
+                        </button>
+                </form>
             @else
-                <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
+                {{-- <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a> --}}
+                <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+                        
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-primary">
+                            Alquilar pel&iacute;cula
+                            
+                        </button>
+                </form>
+
+
+
+
+
             @endif
             <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
