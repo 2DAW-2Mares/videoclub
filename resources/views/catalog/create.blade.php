@@ -28,7 +28,9 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster">
+                            <div><img src="{{ asset('storage/' . $pelicula->poster) }}"></div>
+                            <label for="poster">Seleccionar imagen del poster:</label>
+                            <input type="file" id="poster" name="poster">
                         </div>
 
                         <div class="form-group">
