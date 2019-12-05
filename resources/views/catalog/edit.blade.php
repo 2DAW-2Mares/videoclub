@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -10,11 +10,12 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('NumerosController@putEdit') }}" method="POST">
+                    <form action="{{ action('CatalogController@putEdit') }}" method="POST">
 
                         {{method_field('PUT')}}
 
                         @csrf
+                        <input type="hidden" name="id" value="{{ $pelicula->id }}">
 
                         <div class="form-group">
                             <label for="title">Título</label>
