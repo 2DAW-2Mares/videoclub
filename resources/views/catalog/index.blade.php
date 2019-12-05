@@ -4,11 +4,7 @@
 
     <div class="row">
 
-<<<<<<< HEAD
-        @foreach( $listaPeliculas as $key => $pelicula )
-=======
         @foreach( $arrayPeliculas as $pelicula )
->>>>>>> bd5381467e6cffbbd7bcba9345b61c5b4db34316
             <div class="col-xs-6 col-sm-4 col-md-3 text-center">
 
                 <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
