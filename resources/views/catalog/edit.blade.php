@@ -32,7 +32,12 @@
 
                         <div class="form-group">
                             <label for="avatar">Seleccionar imagen del poster:</label>
-                            <input type="file" id="poster" name="poster">
+                            <input type="file" id="poster" name="poster" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">URL de la imágen</label>
+                            <input type="text" name="posterURL" id="posterURL" class="form-control">
                         </div>
 
                         <div class="form-group">
