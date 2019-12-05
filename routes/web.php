@@ -17,11 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('catalog', 'CatalogController@getIndex');
+
 
 Route::group(['middleware' => ['auth']], function () {
 
-
-    Route::get('catalog', 'CatalogController@getIndex');
 
     Route::get('catalog/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
 
