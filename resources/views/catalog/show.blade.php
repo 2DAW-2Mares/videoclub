@@ -7,7 +7,7 @@
         <div class="col-sm-4">
 
             <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
-                <img src="{{$pelicula->poster}}" style="height:200px"/>
+               <img src="{{asset('storage/' . $pelicula->poster)}}" style="height:300px"/>
             </a>
 
         </div>
@@ -48,8 +48,7 @@
                             Alquilar pelicula
                         </button>
                 </form>
-            @else
-                <a class="btn btn-primary" href="#">Alquilar pelicula</a>
+
             @endif
             <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
