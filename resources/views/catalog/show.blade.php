@@ -7,7 +7,7 @@
         <div class="col-sm-4">
 
             <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
-                <img src="{{$pelicula->poster}}" style="height:200px"/>
+                <img src="{{asset('storage/' . $pelicula->poster)}}" style="height:200px"/>
             </a>
 
         </div>
@@ -25,7 +25,7 @@
                 @endif
             </p>
 
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('CatalogController@changeRented') }}" method="POST" enctype="multipart/form-data">
                 {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" name="id" value="{{ $pelicula->id }}">

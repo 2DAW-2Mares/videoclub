@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('CatalogController@postCreate') }}" method="POST">
+                    <form action="{{ action('CatalogController@postCreate') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
 
@@ -27,9 +27,8 @@
                             <input type="text" name="director" placeholder="Director">
                         </div>
 
-                        <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster">
-                        </div>
+                        <label for="avatar">Seleccionar imagen del poster:</label>
+                            <input type="file" id="poster" name="poster">
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
