@@ -31,8 +31,7 @@ class CatalogController extends Controller
         return view('catalog.create');
     }
 
-    public function postCreate(Request $request)
-    {
+    public function postCreate(Request $request) {
         $pelicula = new Movie();
         $this->guardaPelicula($pelicula,$request);
         return redirect(action('CatalogController@getIndex'));
@@ -111,6 +110,13 @@ class CatalogController extends Controller
             $rtn = true;
         }
         return $rtn;
+    }
+
+    //-- TODO Hacer que se guarde automáticamente en la base de datos una copia de la imagen pasada por url
+    public function guardaImagen(){
+        $url = 'http://example.com/image.php';
+        $img = '/my/folder/flower.gif';
+        file_put_contents($img, file_get_contents($url));
     }
 }
 
