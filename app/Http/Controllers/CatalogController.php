@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CatalogController extends Controller {
     public function getIndex() {
@@ -32,11 +33,15 @@ class CatalogController extends Controller {
     }
 
     public function putEdit(Request $request) {
+
         $pelicula           = Movie::findOrFail($request->idHidden);
         $pelicula->title    = $request->title;
         $pelicula->year     = $request->year;
         $pelicula->director = $request->director;
-        $pelicula->poster   = $request->poster;
+        if ($request->exists('poster')) {
+            $pelicula->poster = Storage::disk('public')->putFile('posters', $request->file('poster'));
+        }
+        /* $pelicula->poster   = $request->poster;*/
         $pelicula->synopsis = $request->synopsis;
         $pelicula->save();
         return redirect(action('CatalogController@getIndex'));
@@ -47,7 +52,10 @@ class CatalogController extends Controller {
         $pelicula->title    = $request->title;
         $pelicula->year     = $request->year;
         $pelicula->director = $request->director;
-        $pelicula->poster   = $request->poster;
+        if ($request->exists('poster')) {
+            $pelicula->poster = Storage::disk('public')->putFile('posters', $request->file('poster'));
+        }
+        /*$pelicula->poster   = $request->poster;*/
         $pelicula->synopsis = $request->synopsis;
         $pelicula->save();
         return redirect(action('CatalogController@getIndex'));

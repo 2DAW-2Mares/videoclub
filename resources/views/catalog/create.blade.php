@@ -30,12 +30,13 @@
                         <div class="form-group">
                             <input type="url" name="poster" placeholder="url del poster">
                         </div>
-
+       <label for="avatar">Seleccionar imagen del poster:</label>
+                        <input type="file" id="poster" name="poster">
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
                             <textarea name="synopsis" id="synopsis" class="form-control" rows="3"></textarea>
                         </div>
-
+                 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
                                 Añadir película
