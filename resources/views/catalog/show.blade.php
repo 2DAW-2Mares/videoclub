@@ -26,7 +26,7 @@
             </p>
 
             @if($pelicula->rented)
-                <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a>
+                <a class="btn btn-danger" href="">Devolver pel&iacute;cula</a>
             @else
                 <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
             @endif
