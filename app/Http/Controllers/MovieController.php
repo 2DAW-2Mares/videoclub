@@ -79,7 +79,15 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pelicula = $id;
+        $pelicula->title = $request->input('title');
+        $pelicula->year = $request->input('year');
+        $pelicula->director = $request->input('director');
+        $pelicula->poster = $request->input('poster');
+        $pelicula->synopsis = $request->input('synopsis');
+        $pelicula->save();
+
+        return redirect(action('CatalogController@getShow', ['id' => $pelicula->id]));
     }
 
     /**

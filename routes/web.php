@@ -29,11 +29,8 @@ Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
 
 Auth::routes();
 
-<<<<<<< HEAD
 Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
 
 
 Route::resource('movie', 'MovieController');
-=======
 Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> 7face9f1581ee3595a8cb3531d0c3a5631df0578
