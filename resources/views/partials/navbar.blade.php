@@ -13,13 +13,13 @@
                 @guest
                 @else
                     <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog')}}">
+                        <a class="nav-link" href="{{url('/movies')}}">
                             <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
                             Catálogo
                         </a>
                     </li>
                     <li class="nav-item {{  Request::is('catalog/create') ? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog/create')}}">
+                        <a class="nav-link" href="{{url('/movies/create')}}">
                             <span>&#10010</span> Nueva pel&iacute;cula
                         </a>
                     </li>
