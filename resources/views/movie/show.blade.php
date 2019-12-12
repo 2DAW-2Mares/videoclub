@@ -7,7 +7,7 @@
         <div class="col-sm-4">
 
             <a href="{{ url('/movie/show/' . $pelicula->id ) }}">
-               <img src="{{$pelicula->poster}}" style="height:300px"/>
+               <img src="{{asset('storage/' . $pelicula->poster)}}" style="height:300px"/>
             </a>
 
         </div>
@@ -27,7 +27,7 @@
 
             @if($pelicula->rented)
 
-                <form action="{{ action('PhotoController@peliculaAlquilada') }}" method="POST">
+                <form action="{{ action('PhotoController') }}" method="POST">
 
                     {{method_field('PUT')}}
                     @csrf
@@ -39,7 +39,7 @@
                 </form>
             @else
                 {{-- <a class="btn btn-primary" href="#">Alquilar pelicula</a> --}}
-                <form action="{{ action('PhotoController@peliculaAlquilada') }}" method="POST">
+                <form action="{{ action('CatalogController@peliculaAlquilada') }}" method="POST">
                     {{method_field('PUT')}}
                     @csrf
                     <input type="hidden" name="id" value="{{ $pelicula->id }}">
@@ -53,7 +53,7 @@
             <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 Editar pelicula</a>
-            <a class="btn btn-outline-info" href="{{ action('PhotoController@getIndex') }}">Volver al listado</a>
+            <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
 
         </div>
     </div>
