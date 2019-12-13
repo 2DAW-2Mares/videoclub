@@ -25,7 +25,23 @@ Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::put('edit', 'CatalogController@putEdit');
 
     Route::put('/changeRented', 'CatalogController@changeRented');
+
+    
+
+/*     Route::resources([
+    'Movie' => 'MovieController',
+    'posts' => 'PostController'
+]);
+ */
+
 });
+
+Route::put('movie/changeRented', 'MovieController@changeRented');
+Route::resource('movie', 'MovieController');
+
+
+
+
 
 Auth::routes();
 

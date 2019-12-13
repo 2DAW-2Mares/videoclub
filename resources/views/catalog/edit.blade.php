@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('CatalogController@putEdit') }}" method="POST">
+                    <form action="{{ action('MovieController@update', array('movie' => $pelicula)) }}" method="POST" enctype="multipart/form-data">
 
                         {{method_field('PUT')}}
 
@@ -30,9 +30,10 @@
                             <input type="text" name="director" placeholder="Director" value="{{ $pelicula->director }}">
                         </div>
 
-                        <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster" value="{{ $pelicula->poster }}">
-                        </div>
+                        <label for="avatar">Seleccionar imagen del poster:</label>
+                            <input type="file" id="poster" name="poster">
+
+                            <img src="{{asset('storage/' . $pelicula->poster)}}" style="height:200px"/>
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
