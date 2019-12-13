@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
-
 class CatalogController extends Controller
 {
     public function getIndex()
@@ -68,7 +67,7 @@ class CatalogController extends Controller
         $pelicula = Movie::findOrFail($request->id);
         $pelicula->rented = !$pelicula->rented;
         $pelicula->save();
-
+        
         return redirect()->action('CatalogController@getShow', ['id' => $request->id]);
     }
 }

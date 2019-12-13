@@ -25,7 +25,7 @@
                 @endif
             </p>
 
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('MovieController@changeRented') }}" method="POST">
                 {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" name="id" value="{{ $pelicula->id }}">
@@ -36,10 +36,10 @@
                 <button type="submit" class="btn btn-primary">Alquilar pel&iacute;cula</button>
                 @endif
 
-                <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
+                <a class="btn btn-warning" href="{{ action('MovieController@edit', array('movie' => $pelicula)) }}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     Editar pel&iacute;cula</a>
-                <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+                <a class="btn btn-outline-info" href="{{ action('MovieController@index') }}">Volver al listado</a>
             </form>
         </div>
     </div>
