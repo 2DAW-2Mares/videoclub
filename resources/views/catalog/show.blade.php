@@ -6,7 +6,7 @@
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
+            <a href="{{ url('/movies/show/' . $pelicula->id ) }}">
                 <img src="{{$pelicula->poster}}" style="height:200px"/>
             </a>
 
@@ -25,7 +25,7 @@
                 @endif
             </p>
 
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('MovieController@changeRented', ['movie' => $pelicula]) }}" method="POST">
                 {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" name="id" value="{{ $pelicula->id }}">
@@ -36,11 +36,21 @@
                 <button type="submit" class="btn btn-primary">Alquilar pel&iacute;cula</button>
                 @endif
 
-                <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
+                <a class="btn btn-warning" href="{{ action('MovieController@edit', ['movie' => $pelicula]) }}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     Editar pel&iacute;cula</a>
-                <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+                <a class="btn btn-outline-info" href="{{ action('MovieController@index') }}">Volver al listado</a>
+
             </form>
+
+            <br>
+
+            <form action="{{ action('MovieController@destroy', ['movie' => $pelicula]) }}" method="POST">
+                {{method_field('DELETE')}}
+                @csrf
+                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Eliminar película?')">Eliminar película</button>
+            </form>
+
         </div>
     </div>
 
