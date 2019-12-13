@@ -6,8 +6,8 @@
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
-                <img src="{{$pelicula->poster}}" style="height:200px"/>
+            <a href="{{ url('/movie/show/' . $pelicula->id ) }}">
+               <img src="{{$pelicula->poster}}" style="height:300px"/>
             </a>
 
         </div>
@@ -26,14 +26,34 @@
             </p>
 
             @if($pelicula->rented)
-                <a class="btn btn-danger" href="#">Devolver pel&iacute;cula</a>
+
+                <form action="{{ action('PhotoController@peliculaAlquilada') }}" method="POST">
+
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-danger" >
+                            Devolver pelicula
+                        </button>
+                </form>
             @else
-                <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
+                {{-- <a class="btn btn-primary" href="#">Alquilar pelicula</a> --}}
+                <form action="{{ action('PhotoController@peliculaAlquilada') }}" method="POST">
+                    {{method_field('PUT')}}
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                    <input type="hidden" name="rented" value="{{ $pelicula->rented }}">
+                    <button type="submit" class="btn btn-primary">
+                            Alquilar pelicula
+                        </button>
+                </form>
+
             @endif
             <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                Editar pel&iacute;cula</a>
-            <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+                Editar pelicula</a>
+            <a class="btn btn-outline-info" href="{{ action('PhotoController@getIndex') }}">Volver al listado</a>
 
         </div>
     </div>
