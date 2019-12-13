@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('CatalogController@putEdit') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ action('MovieController@update', array('movie' => $pelicula)) }}" method="POST" enctype="multipart/form-data">
 
                         {{method_field('PUT')}}
 
