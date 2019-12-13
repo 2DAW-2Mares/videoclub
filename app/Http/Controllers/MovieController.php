@@ -26,9 +26,11 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //action="{{ action('CatalogController@postCreate') }}"
     public function create()
     {
-        //
+        return view('catalog.create');
     }
 
     /**
@@ -39,7 +41,15 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelicula = new Movie();
+        $pelicula->title = $request->input('title');
+        $pelicula->year = $request->input('year');
+        $pelicula->director = $request->input('director');
+        $pelicula->poster = $request->input('poster');
+        $pelicula->rented = false;
+        $pelicula->synopsis = $request->input('synopsis');
+        $pelicula->save();
+        return redirect(action('MovieController@index'));
     }
 
     /**
@@ -62,9 +72,12 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
+    //action="{{ action('CatalogController@putEdit') }}"
     public function edit(Movie $movie)
     {
-        //
+        return view('catalog.edit', array(
+            'pelicula' => $movie
+        ));
     }
 
     /**
@@ -74,9 +87,18 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
+    //action="{{ action('MovieController@update') , ['movie' => $pelicula] }}"
+    //Request $request, Movie $movie
     public function update(Request $request, Movie $movie)
     {
-        //
+        $movie->title = $request->input('title');
+        $movie->year = $request->input('year');
+        $movie->director = $request->input('director');
+        $movie->poster = $request->input('poster');
+        $movie->synopsis = $request->input('synopsis');
+        $movie->save();
+
+        return redirect()->action('MovieController@show', ['movie' => $movie]);
     }
 
     /**
@@ -87,15 +109,15 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect(action('MovieController@index'));
     }
 
     //hay que pasarle la pelicula
-    public function changeRented(Request $request) {
-        $pelicula = $request->pelicula;
-        $pelicula->rented = !$pelicula->rented;
-        $pelicula->save();
+    public function changeRented(Movie $movie) {
+        $movie->rented = !$movie->rented;
+        $movie->save();
 
-        return redirect()->action('MovieController@show', ['movie' => $request->pelicula]);
+        return redirect()->action('MovieController@show', ['movie' => $movie]);
     }
 }
