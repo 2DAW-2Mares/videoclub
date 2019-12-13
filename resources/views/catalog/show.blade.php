@@ -39,8 +39,13 @@
                 <a class="btn btn-warning" href="{{ action('MovieController@edit', ['movie' => $pelicula] ) }}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     Editar pel&iacute;cula</a>
-                <a class="btn btn-danger" onclick="return confirm('¿Seguro que desea eliminar ésta película?')" href="{{ action('MovieController@destroy', ['movie' => $pelicula]) }}">Eliminar película</a>
+                
                 <a class="btn btn-outline-info" href="{{ action('MovieController@index') }}">Volver al listado</a>
+            </form>
+            <form action="{{ action('MovieController@destroy', ['movie' => $pelicula]) }}" method="POST">
+                {{method_field('DELETE')}}
+                @csrf                
+                <button type="submit" onclick="return confirm('¿Seguro que desea eliminar ésta película?')" class="btn btn-danger">Eliminar película</button>
             </form>
         </div>
     </div>

@@ -30,7 +30,6 @@ Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
 
 Route::resource('/movies', 'MovieController')->middleware('auth');
 Route::put('/movies/changeRented/{movie}', 'MovieController@changeRented');
-Route::get('/movies/destory/{movie}', 'MovieController@destroy');
 
 
 Auth::routes();
