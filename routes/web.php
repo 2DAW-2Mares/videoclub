@@ -14,7 +14,7 @@
 Route::get('/', 'HomeController@getHome');
 
 Route::resource('movies', 'MovieController')->middleware('auth');
-Route::put('movies/changeRented/{movie}', 'MovieController@changeRented');
+Route::put('movies/changeRented/{movie}', 'MovieController@changeRented')->middleware('auth');
 
 Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::get('/', 'CatalogController@getIndex');
