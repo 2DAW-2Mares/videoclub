@@ -28,7 +28,8 @@ Route::post('catalog/create', 'CatalogController@postCreate')->middleware('auth'
 
 Route::get('catalog/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+')->middleware('auth');
 Route::put('catalog/edit', 'CatalogController@putEdit')->middleware('auth');
-
+Route::resource('movie', 'MovieController');
+Route::put('peliculaAlquilada', 'MovieController@peliculaAlquilada');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
