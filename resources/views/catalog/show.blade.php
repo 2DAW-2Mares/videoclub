@@ -7,7 +7,11 @@
         <div class="col-sm-4">
 
             <a href="{{ url('/movies/show/' . $pelicula->id ) }}">
-                <img src="{{$pelicula->poster}}" style="height:200px"/>
+                @if ( strpos($pelicula->poster, 'http') !==false )
+                    <img src="{{ $pelicula->poster }}" style="height:200px"/>
+                @else
+                    <img src="{{ asset('storage/' . $pelicula->poster) }}" style="height:200px"/>
+                @endif
             </a>
 
         </div>

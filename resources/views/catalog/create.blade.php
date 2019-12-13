@@ -28,7 +28,9 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster">
+                            <label for="poster">Seleccionar imagen del poster:</label><br>
+                            <input type="text" id="posterURL" name="posterURL" placeholder="URL de la imagen"><br>
+                            <input type="file" id="poster" name="poster">
                         </div>
 
                         <div class="form-group">

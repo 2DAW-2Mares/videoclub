@@ -29,8 +29,17 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="url" name="poster" placeholder="url del poster" value="{{ $pelicula->poster }}">
+                            @if ( strpos($pelicula->poster, 'http') !==false )
+                            <div><img src="{{ $pelicula->poster }}" style="height:200px"/></div>
+                            @else
+                            <div><img src="{{ asset('storage/' . $pelicula->poster) }}" style="height:200px"/></div>
+                            @endif
+
+                            <label for="poster">Seleccionar nueva imagen del poster:</label><br>
+                            <input type="text" id="posterURL" name="posterURL" placeholder="URL de la imagen"><br>
+                            <input type="file" id="poster" name="poster">
                         </div>
+
 
                         <div class="form-group">
                             <label for="synopsis">Resumen</label>
