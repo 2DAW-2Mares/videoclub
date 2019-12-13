@@ -131,13 +131,11 @@ class MovieController extends Controller {
 
     private function importarPoster($pelicula, $url) {
         $posterOriginal = $pelicula->poster;
-        $pelicula->poster = $url;
-        $file_headers = @get_headers($pelicula->poster);
+        $file_headers = @get_headers($url);
         if ($file_headers && $file_headers[0] == 'HTTP/1.1 200 OK') {
-            if (getimagesize($pelicula->poster)) {
-                echo "Actualiza";
+            if (getimagesize($url)) {
                 $uid = uniqid();
-                Storage::disk('public')->put('posters/' . $uid . '.jpg', file_get_contents($pelicula->poster));
+                Storage::disk('public')->put('posters/' . $uid . '.jpg', file_get_contents($url));
                 $pelicula->poster = 'posters/' . $uid . '.jpg';
                 if ($pelicula->save()) {
                     $this->borraPosterAnterior($posterOriginal);
