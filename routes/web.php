@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@getHome');
 
-Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
+/*Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::get('/', 'CatalogController@getIndex');
 
     Route::get('show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
@@ -25,8 +25,12 @@ Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::put('edit', 'CatalogController@putEdit');
 
     Route::put('/changeRented', 'CatalogController@changeRented');
-});
+});*/
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('movies', 'MovieController')->middleware('auth');
+
+Route::put('movies/changeRented', 'MovieController@changeRented')->middleware('auth');

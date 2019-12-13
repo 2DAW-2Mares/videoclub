@@ -6,7 +6,7 @@
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
+            <a href="{{action('MovieController@show' , ['movie' => $pelicula]) }}">
                 <img src="{{$pelicula->poster}}" style="height:200px"/>
             </a>
 
@@ -25,10 +25,10 @@
                 @endif
             </p>
 
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('MovieController@changeRented') }}" method="POST">
                 {{method_field('PUT')}}
                 @csrf
-                <input type="hidden" name="id" value="{{ $pelicula->id }}">
+                <input type="hidden" name="pelicula" value="{{ $pelicula }}">
 
                 @if($pelicula->rented)
                 <button type="submit" class="btn btn-danger">Devolver pel&iacute;cula</button>
@@ -39,7 +39,7 @@
                 <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     Editar pel&iacute;cula</a>
-                <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+                <a class="btn btn-outline-info" href="{{ action('MovieController@index') }}">Volver al listado</a>
             </form>
         </div>
     </div>
