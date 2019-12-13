@@ -28,7 +28,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-
+        return view('catalog.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        return view('catalog.create');
+        $pelicula = new Movie();
+        $pelicula->title = $request->input('title');
+        $pelicula->year = $request->input('year');
+        $pelicula->director = $request->input('director');
+        $pelicula->poster = $request->input('poster');
+        $pelicula->rented = false;
+        $pelicula->synopsis = $request->input('synopsis');
+        $pelicula->save();
+        return redirect(action('MovieController@index'));
     }
 
     /**
@@ -50,9 +58,9 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-
+        $pelicula = Movie::findOrFail($id);
         return view('catalog.show', array(
-            'pelicula' => $id
+            'pelicula' => $pelicula
         ));
     }
 
@@ -64,9 +72,9 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-
+        $pelicula = Movie::findOrFail($id);
         return view('catalog.edit', array(
-            'pelicula' => $id
+            'pelicula' => $pelicula
         ));
     }
 
@@ -79,7 +87,7 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pelicula = $id;
+        $pelicula = Movie::findOrFail($request->input('id'));
         $pelicula->title = $request->input('title');
         $pelicula->year = $request->input('year');
         $pelicula->director = $request->input('director');
@@ -87,7 +95,7 @@ class MovieController extends Controller
         $pelicula->synopsis = $request->input('synopsis');
         $pelicula->save();
 
-        return redirect(action('CatalogController@getShow', ['id' => $pelicula->id]));
+        return redirect(action('MovieController@show', ['id' => $pelicula->id]));
     }
 
     /**
@@ -96,8 +104,17 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect(action('MovieController@index'));
+    }
+    public function changeRented(Request $request, Movie $movie) {
+
+        $pelicula = Movie::findOrFail($request->id);
+        $pelicula->rented = !$pelicula->rented;
+        $pelicula->save();
+
+        return redirect()->action('MovieController@show', $request->id);
     }
 }

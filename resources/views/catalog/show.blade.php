@@ -6,7 +6,7 @@
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
+            <a href="{{ url('/movie/' . $pelicula->id ) }}">
                 <img src="{{$pelicula->poster}}" style="height:200px"/>
             </a>
 
@@ -25,22 +25,10 @@
                 @endif
             </p>
 
-<<<<<<< HEAD
-            @if($pelicula->rented)
-                <a class="btn btn-danger" href="">Devolver pel&iacute;cula</a>
-            @else
-                <a class="btn btn-primary" href="#">Alquilar pel&iacute;cula</a>
-            @endif
-            <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                Editar pel&iacute;cula</a>
-            <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
-=======
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('MovieController@changeRented', array('movie'=> $pelicula)) }}" method="POST">
                 {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" name="id" value="{{ $pelicula->id }}">
->>>>>>> 7face9f1581ee3595a8cb3531d0c3a5631df0578
 
                 @if($pelicula->rented)
                 <button type="submit" class="btn btn-danger">Devolver pel&iacute;cula</button>
@@ -48,10 +36,15 @@
                 <button type="submit" class="btn btn-primary">Alquilar pel&iacute;cula</button>
                 @endif
 
-                <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
+                <a class="btn btn-warning" href="{{ action('MovieController@edit', array('movie'=> $pelicula)),"/edit" }}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     Editar pel&iacute;cula</a>
-                <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+                <a class="btn btn-outline-info" href="{{ action('MovieController@index') }}">Volver al listado</a>
+            </form>
+            <form action="{{ action('MovieController@destroy', array('movie'=> $pelicula)) }}" method="post">
+                {{method_field('DELETE')}}
+                @csrf
+                <button type="submit" class="btn btn-danger">Borrar pel&iacute;cula</button>
             </form>
         </div>
     </div>
