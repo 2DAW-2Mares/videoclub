@@ -18,9 +18,9 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->year('year', 8);
             $table->string('director', 64);
-            $table->string('poster');
+            $table->string('poster')->nullable();
             $table->boolean('rented')->default(false);
-            $table->text('synopsis');
+            $table->text('synopsis')->nullable();
             $table->timestamps();
         });
     }

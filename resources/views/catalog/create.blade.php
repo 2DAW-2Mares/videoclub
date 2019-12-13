@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('partials.flash-message')
     <div class="row" style="margin-top:40px">
         <div class="offset-md-3 col-md-6">
             <div class="card">
@@ -10,26 +10,27 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('MovieController@store') }}" method="POST">
+                    <form action="{{ action('MovieController@store') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
 
                         <div class="form-group">
                             <label for="title">Título</label>
-                            <input type="text" name="title" id="title" class="form-control">
+                            <input type="text" name="title" id="title" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o">
+                            <input type="number" min="1900" max="2030" name="year" placeholder="A&ntilde;o" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="director" placeholder="Director">
+                            <input type="text" name="director" placeholder="Director" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="poster">Seleccionar imagen del poster:</label><br>
+                            <label for="posterURL">Seleccionar nueva imagen del poster desde internet:</label><br>
                             <input type="text" id="posterURL" name="posterURL" placeholder="URL de la imagen"><br>
+                            <label for="posterURL">Seleccionar nueva imagen del poster desde tu equipo:</label><br>
                             <input type="file" id="poster" name="poster">
                         </div>
 

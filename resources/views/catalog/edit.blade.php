@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('partials.flash-message')
     <div class="row" style="margin-top:40px">
         <div class="offset-md-3 col-md-6">
             <div class="card">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                   <form action="{{ action('MovieController@update', ['movie' => $pelicula]) }}" method="POST">
+                   <form action="{{ action('MovieController@update', ['movie' => $pelicula]) }}" method="POST" enctype="multipart/form-data">
                         {{method_field('PUT')}}
 
                         @csrf
@@ -35,8 +35,9 @@
                             <div><img src="{{ asset('storage/' . $pelicula->poster) }}" style="height:200px"/></div>
                             @endif
 
-                            <label for="poster">Seleccionar nueva imagen del poster:</label><br>
+                            <label for="posterURL">Seleccionar nueva imagen del poster desde internet:</label><br>
                             <input type="text" id="posterURL" name="posterURL" placeholder="URL de la imagen"><br>
+                            <label for="posterURL">Seleccionar nueva imagen del poster desde tu equipo:</label><br>
                             <input type="file" id="poster" name="poster">
                         </div>
 

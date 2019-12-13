@@ -1,17 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('partials.flash-message')
     <div class="row">
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/movies/show/' . $pelicula->id ) }}">
-                @if ( strpos($pelicula->poster, 'http') !==false )
-                    <img src="{{ $pelicula->poster }}" style="height:200px"/>
-                @else
-                    <img src="{{ asset('storage/' . $pelicula->poster) }}" style="height:200px"/>
-                @endif
+            <a href="{{ action('MovieController@show', ['movie' => $pelicula]) }}">
+                <img src="{{ asset('storage/' . $pelicula->poster) }}" style="height:200px"/>
             </a>
 
         </div>

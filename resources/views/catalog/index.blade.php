@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('partials.flash-message')
     <div class="row">
 
         @foreach( $arrayPeliculas as $pelicula )

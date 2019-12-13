@@ -116,6 +116,7 @@ class CatalogController extends Controller
     public function guardaImagen(){
         $url = 'http://example.com/image.php';
         $img = '/my/folder/flower.gif';
+        $filename = uniqid(rand(), true) . '.pdf';
         file_put_contents($img, file_get_contents($url));
     }
 }
