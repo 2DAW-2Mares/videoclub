@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/movie') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -12,14 +12,14 @@
             <ul class="navbar-nav mr-auto">
                 @guest
                 @else
-                    <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog')}}">
+                    <li class="nav-item {{ Request::is('movie') && ! Request::is('movie/create')? 'active' : ''}}">
+                        <a class="nav-link" href="{{url('/movie')}}">
                             <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
                             Catálogo
                         </a>
                     </li>
-                    <li class="nav-item {{  Request::is('catalog/create') ? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog/create')}}">
+                    <li class="nav-item {{  Request::is('movie/create') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{url('/movie/create')}}">
                             <span>&#10010</span> Nueva pel&iacute;cula
                         </a>
                     </li>
