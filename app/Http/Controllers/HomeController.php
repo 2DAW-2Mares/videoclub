@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function getHome()
     {
-        return redirect(action('CatalogController@getIndex'));
+        return redirect(action('Moviecontroller@index'));
     }
 
     /**

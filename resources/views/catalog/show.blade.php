@@ -6,7 +6,7 @@
 
         <div class="col-sm-4">
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
+            <a href="{{ url('/movies' . '/' . $pelicula->id ) }}">
                 <img src="{{asset('storage/' . $pelicula->poster)}}" style="height:200px"/>
             </a>
 
@@ -25,7 +25,7 @@
                 @endif
             </p>
 
-            <form action="{{ action('CatalogController@changeRented') }}" method="POST">
+            <form action="{{ action('Moviecontroller@changeRented', array('movie' => $pelicula)) }}" method="POST" class="form-group">
                 {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" name="id" value="{{ $pelicula->id }}">
@@ -35,11 +35,17 @@
                 @else
                 <button type="submit" class="btn btn-primary">Alquilar pel&iacute;cula</button>
                 @endif
-
-                <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    Editar pel&iacute;cula</a>
-                <a class="btn btn-outline-info" href="{{ action('CatalogController@getIndex') }}">Volver al listado</a>
+            </form>
+            <div class="form-group">
+            <a class="btn btn-warning" href="{{ url('/movies' . '/' . $pelicula->id . '/edit' . '/' ) }}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                Editar pel&iacute;cula</a>
+            <a class="btn btn-outline-info" href="{{ action('Moviecontroller@index') }}">Volver al listado</a>
+            </div>
+            <form action="{{ action('Moviecontroller@destroy', array('movie' => $pelicula)) }}" method="POST">
+                @method('delete')
+                @csrf
+                <button onclick="return confirm('¿Seguro que quieres borrar la película?')" type="submit" class="btn btn-danger">Borrar pel&iacute;cula</button>
             </form>
         </div>
     </div>
