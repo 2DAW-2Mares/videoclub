@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{  Request::is('catalog/create') ? 'active' : ''}}">
-                    <a class="nav-link" href="{{url('/catalog/create')}}">
+                    <a class="nav-link" href="{{ action('MovieController@create')}}">
                         <span>&#10010</span> Nueva pel&iacute;cula
                     </a>
                 </li>
