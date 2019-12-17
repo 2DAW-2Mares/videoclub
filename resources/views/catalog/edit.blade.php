@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body" style="padding:30px">
 
-                    <form action="{{ action('CatalogController@putEdit') }}" method="POST">
+                    <form action="{{ action('MovieController@update' , ['movie' => $pelicula]) }}"  method="POST">
 
                         {{method_field('PUT')}}
 
