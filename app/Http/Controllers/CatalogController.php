@@ -16,6 +16,18 @@ class CatalogController extends Controller
         );
     }
 
+    public function postIndex(Request $request)
+    {
+        return view('catalog.index',
+            array(
+                'arrayPeliculas' => Movie::where([
+                    ['title', 'like', '%' . $request->input('busqueda') . '%'],
+                    ['rented', '=', $request->input('alquilado')]
+                ])->get()
+            )
+        );
+    }
+
     public function getShow($id)
     {
         $pelicula = Movie::findOrFail($id);

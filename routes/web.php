@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@getHome');
 
 Route::group(['prefix' => 'catalog', 'middleware' => 'auth'], function() {
     Route::get('/', 'CatalogController@getIndex');
+    Route::post('/', 'CatalogController@postIndex');
 
     Route::get('show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
 
